@@ -12,7 +12,8 @@ var port = process.env.PORT || process.env.NODE_PORT || 3000;        // set our 
 
 // DB SETUP
 var mongoose = require('mongoose');
-// TODO: connect to db here
+var dbURI = 'mongodb://localhost/interactiveWall';
+mongoose.connect(dbURI);
 
 // ROUTES
 var router = express.Router();
@@ -28,3 +29,4 @@ app.use('/api/v1/', router);
 // START THE SERVER
 app.listen(port);
 console.log('Magic happens on port ' + port);
+ 
