@@ -24,7 +24,4 @@ var AccountSchema = new mongoose.AccountSchema({
 	}
 });
 
-AccountModel = mongoose.model('Account', AccountSchema);
-
-module.exports.AccountModel = AccountModel;
-module.exports.AccountSchema = AccountSchema;
+module.exports = mongoose.model('Account', AccountSchema);
