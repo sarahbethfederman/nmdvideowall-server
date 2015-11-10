@@ -12,7 +12,7 @@ var getAllSubmissions = function(req, res) {
 var addSubmission = function(req, res) {
 	// create new submission
 	var submissionData = {
-		title: req.body.title
+		title: req.body.submission.title
 	}
 
 	var submission = new Submission(submissionData);
