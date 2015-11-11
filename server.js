@@ -3,8 +3,10 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser');
 
+// Load config variables
+var config = require('./config.js');		
 
-var port = process.env.PORT || process.env.NODE_PORT || 3000;        // set our port
+var port = config.http.port || 3000;        // set our port
 
 // set the static files location for our Ember application
 app.use(express.static(__dirname + '/public'));
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 
 // DB SETUP
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/interactiveWall';
+var dbURI = config.dburl;
 mongoose.connect(dbURI);
 
 // ROUTES

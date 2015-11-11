@@ -7,10 +7,10 @@ var SubmissionSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true
+	},
+	description: {
+		type: String
 	}
-	// description: {
-	// 	type: String
-	// },
 	// format: {			// video or image
 	// 	type: String,
 	// 	required: true
