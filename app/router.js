@@ -14,12 +14,17 @@ var storage = multer.diskStorage({
 	}
 });
 
-// limit to 20MB files
+// Multer options
 var opts = { 
 	limits: {
-		fileSize: 20000000		// 20 MB == 2 mil bytes
+		fileSize: 20000000	// 20 MB == 2 mil bytes
 	},
-	storage: storage 
+	storage: storage,
+	onFileUploadStart: function(file) {	// omly accept jpg/jpeg, png, and mp4
+	  if(file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png' && file.mimetype !== 'video/mp4') {
+	    return false;
+	  }
+  }	
 };
 
 var upload = multer(opts)
@@ -30,10 +35,7 @@ module.exports = function(router) {
 			submissions.getAllSubmissions(req, res);
 		});
 	router.route('/submit')
-		.post(upload.single('submissionFile'), function(req, res) {
-			upload(req, res, function(err) {
-				var file = 
-			});
+		.post(upload.single('submission-file'), function(req, res) 	// take the file in the form field named submission-file
 			//submissions.addSubmission(req, res, errHandler);
 		});
 	router.route('*')
