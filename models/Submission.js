@@ -10,16 +10,16 @@ var SubmissionSchema = new mongoose.Schema({
 	},
 	description: {
 		type: String
-	}
-	// format: {			// video or image
-	// 	type: String,
-	// 	required: true
-	// },
-	// location: {		// url of hosted image/video
-	// 	type: String,
-	// 	required: true,
-	// 	unique: true
-	// },
+	},
+	format: {			// video or image
+		type: String,
+		required: true
+	},
+	location: {		// url of hosted image/video
+		type: String,
+		required: true,
+		unique: true
+	},
 	// owner: {
 	// 	type: mongoose.Schema.ObjectId,
 	// 	required: true,
@@ -29,10 +29,10 @@ var SubmissionSchema = new mongoose.Schema({
 	// 	type: Boolean,
 	// 	default: false
 	// }
-	// createdDate: {
-	// 	type: Date,
-	// 	default: Date.now
-	// }
+	createdDate: {
+		type: Date,
+		default: Date.now
+	}
 });
 
 SubmissionSchema.statics.findByOwner = function(ownerId, callback) {

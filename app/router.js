@@ -7,37 +7,37 @@ var multer = require('multer');
 // storage options
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
-		cb(null, path.join(__dirname, '../public', 'assets/'));
+		// set destination for user uploads
+		cb(null, path.join(__dirname, '../public', 'assets/', 'submissions/'));
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now());
+		// the file ending from the mimetype
+		var type = file.mimetype;
+		var ending = type.substring(type.indexOf('/') + 1);	
+		cb(null, file.fieldname + '-' + Date.now() + '.' + ending);	// automate unique filenaming
 	}
 });
 
-// limit to 20MB files
+// Multer options
 var opts = { 
 	limits: {
-		fileSize: 20000000		// 20 MB == 2 mil bytes
+		fileSize: 30000000	// 30 MB == 3 mil bytes
 	},
-	storage: storage 
+	storage: storage
 };
 
-var upload = multer(opts)
+var upload = multer(opts);
 
 module.exports = function(router) {
-	router.route('/submissions')
-		.get(function(req, res) {
-			submissions.getAllSubmissions(req, res);
-		});
-	router.route('/submit')
-		.post(upload.single('submissionFile'), function(req, res) {
-			upload(req, res, function(err) {
-				var file = 
-			});
-			//submissions.addSubmission(req, res, errHandler);
-		});
-	router.route('*')
-		.get(function(req, res) {
-			res.sendFile(path.join(__dirname, '../public', 'index.html'));
+	router.get('/submissions', function(req, res) {
+		submissions.getAllSubmissions(req, res);
+	});
+	router.post('/submissions/create', upload.single('submission-file'), function(req, res) {
+		// take the file in the form field named submission-file
+		submissions.addSubmission(req, res);
+	});
+	router.get('*', function(req, res) {
+		// always send the ember SPA, stored in index
+		res.sendFile(path.join(__dirname, '../public', 'index.html'));
 	});
 };
