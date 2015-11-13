@@ -11,3 +11,7 @@ Start the server (port 3000)
 Start ember and proxy requests to the API server running on port 3000
 `cd client`
 `ember serve --proxy http://localhost:3000`
+
+## Deployment
+Build ember into public directory for deployment
+`ember build environment=production output-path=../public`
