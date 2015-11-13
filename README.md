@@ -8,7 +8,7 @@ Start mongdb
 Start the server (port 3000)  
     `npm start`
 
-Start ember and proxy requests to the API server running on port 3000
+Start ember and proxy requests to the API server running on port 3000  
     `cd client`  
     `ember serve --proxy http://localhost:3000`
 
