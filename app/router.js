@@ -7,7 +7,7 @@ var multer = require('multer');
 // storage options
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
-		cb(null, path.join(__dirname, '../public', 'assets/'));
+		cb(null, path.join(__dirname, '../public', 'assets/', 'submissions/'));
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.fieldname + '-' + Date.now());	// automate filenaming
