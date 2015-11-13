@@ -31,8 +31,8 @@ mongoose.connect(dbURI);
 
 // ROUTES
 var router = express.Router();  
-// all of our routes will be prefixed with /api/v1...later
-app.use('/api/v1/', router);
+// all of our routes will be prefixed with /api/v1
+app.use('/api/v1', router);
 require('./app/router')(router); // configure our routes
 
 

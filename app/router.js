@@ -29,11 +29,14 @@ var opts = {
 var upload = multer(opts);
 
 module.exports = function(router) {
-	router.get('/submissions', function(req, res) {
+	router.get('/submissions/', function(req, res) {
 		submissions.getAllSubmissions(req, res);
 	});
-	router.post('/submissions/create', upload.single('submission-file'), function(req, res) {
+	router.post('/submissions/', function(req, res) {
+		console.log('posted to submissions');
 		// take the file in the form field named submission-file
+
+		// TODO: This isn't getting called idk why
 		submissions.addSubmission(req, res);
 	});
 	router.get('*', function(req, res) {

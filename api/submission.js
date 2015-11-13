@@ -15,24 +15,22 @@ var editSubmission = function() {
 };
 
 var addSubmission = function(req, res) {
-	console.log('adding');	
+	console.log('adding submission');	
 
-	var format;
-	if (req.file.mimetype.indexOf('image') !== -1) {
-		//its an image submission
-		format = 'image';
-	} else if (req.file.mimetype.indexOf('video') !== -1) {
-		// its a video submission
-		format = 'video';
-	}
+	// var format;
+	// if (req.file.mimetype.indexOf('image') !== -1) {
+	// 	//its an image submission
+	// 	format = 'image';
+	// } else if (req.file.mimetype.indexOf('video') !== -1) {
+	// 	// its a video submission
+	// 	format = 'video';
+	// }
 
 	// create new submission
 	var submissionData = {
 		title: req.body.title,
 		author: req.body.author,
-		description: req.body.description,
-		location: req.file.path,
-		format: format
+		description: req.body.description
 	};
 
 	var submission = new Submission(submissionData);
@@ -43,7 +41,7 @@ var addSubmission = function(req, res) {
 		if (err) {
 			res.send(err);
 		}
-		console.log('saved');
+		console.log('saved submission');
 		res.json({ submission: submission });
 	});
 };
