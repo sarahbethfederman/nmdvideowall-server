@@ -15,6 +15,8 @@ var editSubmission = function() {
 };
 
 var addSubmission = function(req, res) {
+	console.log('adding');	
+
 	var format;
 	if (req.file.mimetype.indexOf('image') !== -1) {
 		//its an image submission
@@ -34,12 +36,14 @@ var addSubmission = function(req, res) {
 	};
 
 	var submission = new Submission(submissionData);
+
 	
 	// then save it
 	submission.save(function(err) {
 		if (err) {
 			res.send(err);
 		}
+		console.log('saved');
 		res.json({ submission: submission });
 	});
 };

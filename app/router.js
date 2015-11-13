@@ -7,10 +7,14 @@ var multer = require('multer');
 // storage options
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
+		// set destination for user uploads
 		cb(null, path.join(__dirname, '../public', 'assets/', 'submissions/'));
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now());	// automate filenaming
+		// the file ending from the mimetype
+		var type = file.mimetype;
+		var ending = type.substring(type.indexOf('/') + 1);	
+		cb(null, file.fieldname + '-' + Date.now() + '.' + ending);	// automate unique filenaming
 	}
 });
 
@@ -19,13 +23,7 @@ var opts = {
 	limits: {
 		fileSize: 30000000	// 30 MB == 3 mil bytes
 	},
-	storage: storage,
-	onFileUploadStart: function(file) {	// omly accept jpg/jpeg, png, and mp4
-	  if(file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png' && file.mimetype !== 'video/mp4') {
-	  	console.log('wrong file type');
-	    return false;
-	  }
-  }	
+	storage: storage
 };
 
 var upload = multer(opts);

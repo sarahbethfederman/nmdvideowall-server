@@ -11,10 +11,10 @@ var SubmissionSchema = new mongoose.Schema({
 	description: {
 		type: String
 	},
-	// format: {			// video or image
-	// 	type: String,
-	// 	required: true
-	// },
+	format: {			// video or image
+		type: String,
+		required: true
+	},
 	location: {		// url of hosted image/video
 		type: String,
 		required: true,
