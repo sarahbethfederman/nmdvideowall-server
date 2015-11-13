@@ -23,7 +23,7 @@ var opts = {
 	onFileUploadStart: function(file) {	// omly accept jpg/jpeg, png, and mp4
 	  if(file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png' && file.mimetype !== 'video/mp4') {
 	  	console.log('wrong file type');
-	    //return false;
+	    return false;
 	  }
   }	
 };
