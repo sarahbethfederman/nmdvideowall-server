@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 // configure app to use bodyParser()
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 // DB SETUP
 var mongoose = require('mongoose');

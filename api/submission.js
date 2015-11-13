@@ -1,4 +1,5 @@
 var Submission = require('../models/Submission');
+var path = require('path');
 
 var getAllSubmissions = function(req, res) {
 	Submission.find(function(err, results) {
@@ -9,11 +10,28 @@ var getAllSubmissions = function(req, res) {
 	});
 };
 
+var editSubmission = function() {
+
+};
+
 var addSubmission = function(req, res) {
+	var format;
+	if (req.file.mimetype.indexOf('image') !== -1) {
+		//its an image submission
+		format = 'image';
+	} else if (req.file.mimetype.indexOf('video') !== -1) {
+		// its a video submission
+		format = 'video';
+	}
+
 	// create new submission
 	var submissionData = {
-		title: req.body.submission.title
-	}
+		title: req.body.title,
+		author: req.body.author,
+		description: req.body.description,
+		location: req.file.path,
+		format: format
+	};
 
 	var submission = new Submission(submissionData);
 	
@@ -28,3 +46,4 @@ var addSubmission = function(req, res) {
 
 module.exports.getAllSubmissions = getAllSubmissions;
 module.exports.addSubmission = addSubmission;
+module.exports.addSubmission = editSubmission;
