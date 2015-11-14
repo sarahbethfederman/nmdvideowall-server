@@ -25,10 +25,10 @@ var SubmissionSchema = new mongoose.Schema({
 	// 	required: true,
 	// 	ref: 'Account'
 	// },
-	// isApproved: {
-	// 	type: Boolean,
-	// 	default: false
-	// }
+	isApproved: {
+		type: Boolean,
+		default: false
+	},
 	createdDate: {
 		type: Date,
 		default: Date.now

@@ -26,19 +26,30 @@ var opts = {
 	storage: storage
 };
 
-var upload = multer(opts);
+var upload = multer(opts).single('submission-file');
 
 module.exports = function(router) {
 	router.get('/submissions/', function(req, res) {
 		submissions.getAllSubmissions(req, res);
 	});
-	router.post('/submissions/', function(req, res) {
-		console.log('posted to submissions');
-		// take the file in the form field named submission-file
 
-		// TODO: This isn't getting called idk why
-		submissions.addSubmission(req, res);
-	});
+	// take the file in the form field named submission-file
+	router.post('/submissions/', function (req, res) {
+	  upload(req, res, function (err) {
+	    if (err) {
+	      // An error occurred when uploading
+	      throw err;
+	    }
+
+    	// Everything went fine
+    	console.log('uploaded: \n' + req.file.filename);
+
+    	// this isn't getting called?
+    	submissions.addSubmission(req, res);
+    	//res.send(204);
+  	});
+  });
+
 	router.get('*', function(req, res) {
 		// always send the ember SPA, stored in index
 		res.sendFile(path.join(__dirname, '../public', 'index.html'));
