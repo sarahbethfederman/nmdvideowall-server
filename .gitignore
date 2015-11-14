@@ -20,4 +20,4 @@ testem.log
 .env
 
 # ember app
-public/
+/public/*
