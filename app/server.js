@@ -9,15 +9,11 @@ var express = require('express'),
 var config = require('./config.js');				// import config vars
 var port = config.http.port || 3000;        // set our port
 
-// set the static file location for our assets (user uploaded submission files, etc)
-app.use(express.static(__dirname + '/assets'));
-
 // set the static files location for our Ember application
 app.use(express.static(__dirname + '/public'));
 
 // configure app to use bodyParser()
 app.use(bodyParser.urlencoded({ extended: true }));
-// set limit so we can upload large files
 app.use(bodyParser.json({limit: '50mb'}));
 
 // Add CORS headers

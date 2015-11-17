@@ -18,6 +18,7 @@ var addSubmission = function(req, res) {
 	console.log('adding submission');	
 
 	var format;
+
 	if (req.file.mimetype.indexOf('image') !== -1) {
 		//its an image submission
 		format = 'image';
@@ -43,10 +44,9 @@ var addSubmission = function(req, res) {
 			res.send(err);
 		}
 		console.log('saved submission');
+		
 		res.json({ submission: submission });
 	});
-
-	res.status(204);
 };
 
 module.exports.getAllSubmissions = getAllSubmissions;

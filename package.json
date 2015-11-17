@@ -4,7 +4,7 @@
   "description": "an interactive wall",
   "main": "server.js",
   "scripts": {
-    "pretest": "jshint server.js",
+    "pretest": "jshint **.js",
     "test": "echo test completed",
     "start": "node server.js"
   },

@@ -1,3 +1,5 @@
+'use strict';
+
 try {
   require('node-env-file')('./.env'); //should pull env file from root node directory
 }

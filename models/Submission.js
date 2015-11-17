@@ -25,9 +25,12 @@ var SubmissionSchema = new mongoose.Schema({
 	// 	required: true,
 	// 	ref: 'Account'
 	// },
-	isApproved: {
-		type: Boolean,
-		default: false
+	status: {				// did admin approve
+		type: String,
+		default: "pending"
+	},
+	adminMessage: {			// messages from admin, why they were rejected, etc.
+		type: String
 	},
 	createdDate: {
 		type: Date,

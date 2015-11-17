@@ -8,7 +8,7 @@ var multer = require('multer');
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
 		// set destination for user uploads
-		cb(null, path.join(__dirname, '../public', 'assets/', 'submissions/'));
+		cb(null, path.join(__dirname, '../assets', 'submissions/'));
 	},
 	filename: function (req, file, cb) {
 		// the file ending from the mimetype
@@ -38,15 +38,13 @@ module.exports = function(router) {
 	  upload(req, res, function (err) {
 	    if (err) {
 	      // An error occurred when uploading
-	      throw err;
+	      console.log(err);
 	    }
 
     	// Everything went fine
     	console.log('uploaded: \n' + req.file.filename);
 
-    	// this isn't getting called?
     	submissions.addSubmission(req, res);
-    	//res.send(204);
   	});
   });
 
