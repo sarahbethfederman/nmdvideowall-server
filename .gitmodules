@@ -1,3 +1,7 @@
 [submodule "client"]
 	path = client
-	url = https://github.com/sarahbethfederman/nmdvideowall-client.git 
+	url = https://github.com/sarahbethfederman/nmdvideowall-client.git
+
+[submodule "kinect_client"]
+	path = kinect_client
+	url = https://github.com/sarahbethfederman/nmdvideowall-kinect-client.git
